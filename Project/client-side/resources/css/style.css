@@ -1,0 +1,302 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 60%; /* Adjust the container width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Add some opacity for better contrast */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 50px;
+}
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-bottom: 10px;
+}
+.error{
+  color: red;
+}
+
+/* Header and navigation */
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* login page division*/
+
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
+}
+
+.login-left {
+  flex: 1;
+  text-align: center;
+}
+
+.login-left img {
+  width: 150px;
+}
+
+.login-right {
+  flex: 2;
+  padding: 0 20px;
+}
+
+
+
+
+
+/* User Profile Section */
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-profile .username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Tweet Section */
+.tweet-form {
+  margin-bottom: 20px;
+}
+
+.tweet-form textarea {
+  resize: none;
+}
+
+.tweet {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.tweet .author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tweet .content {
+  font-size: 16px;
+}
+
+/* Buttons */
+.primary-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.danger-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.success-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+
+/* User page */
+/* Existing styles */
+
+/* User page styles */
+.userContent {
+  margin-top: 25px;
+  margin-left: 15px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.leftUser {
+
+  flex: 1;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.leftUser img {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.leftUser a {
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.leftUser input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.middleUser {
+  flex: 2;
+  padding: 20px;
+}
+
+.middleUser img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.middleUser h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.middleUser a {
+  text-decoration: none;
+  color: #007bff;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.tweets {
+  margin-top: 20px;
+}
+
+.rightUser {
+  flex: 1;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.rightUser input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.rightUser button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rightUser button:hover {
+  background-color: #0056b3;
+}
+
+.searchResults {
+  margin-top: 20px;
+}

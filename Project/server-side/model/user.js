@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose; 
 
-const mongoose = require('mongoose');
-
 const userSchema = new Schema({
   username: {
     type: String,
@@ -16,7 +14,7 @@ const userSchema = new Schema({
   },
   followers: [],
   followings: [],
-  tweets: [],
+  tweets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tweet' }],
 });
 
 const User = mongoose.model('User', userSchema);
