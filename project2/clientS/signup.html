@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./resources/css/styles.css">
+  <title>Sign Up</title>
+</head>
+<body>
+  <div class="signup_container">
+    <h1>Sign Up</h1>
+    <form id="signupForm">
+      <label for="signupFirstName"> First Name:</label>
+      <input type="text" id="signupFirstName" name="signupFirstName" required>
+
+      <label for="signupLastName">Last Name:</label>
+      <input type="text" id="signupLastName" name="signupLastName" required>
+      
+      
+      <label for="signupUsername">Username:</label>
+      <input type="text" id="signupUsername" name="signupUsername" required>
+      
+      <label for="signupPassword">Password:</label>
+      <input type="password" id="signupPassword" name="signupPassword" required>
+      <p id="userPasswordError" class="error"></p>
+      
+      
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script src="./resources/js/signup-validation.js"></script>
+</body>
+</html>
+
