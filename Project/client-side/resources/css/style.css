@@ -9,16 +9,6 @@ body {
   background-color: #f0f0f0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-top: 50px;
-}
-
 h1 {
   margin-bottom: 20px;
   font-size: 36px;
@@ -29,7 +19,7 @@ h2 {
   margin-bottom: 10px;
 }
 
-.container {
+.login_container {
   max-width: 60%; /* Adjust the container width */
   margin: 0 auto; /* Center the container horizontally */
   padding: 20px;
@@ -139,7 +129,6 @@ nav ul li a:hover {
 
 
 
-
 /* User Profile Section */
 .user-profile {
   display: flex;
@@ -181,6 +170,15 @@ nav ul li a:hover {
 
 .tweet .content {
   font-size: 16px;
+}
+
+.tweetContent {
+  margin-top: 25px;
+  margin-left: 15px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 /* Buttons */
@@ -299,4 +297,39 @@ nav ul li a:hover {
 
 .searchResults {
   margin-top: 20px;
+}
+
+.writeTweet{
+  padding: 5px;
+  border:#4c4949 solid 2px;
+}
+
+
+/* Side Bar */
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebarOption .material-icons,
+.fa-twitter {
+  padding: 20px;
+}
+
+.sidebarOption h2 {
+  font-weight: 800;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.sidebarOption:hover {
+  background-color: var(--twitter-background);
+  border-radius: 30px;
+  color: var(--twitter-color);
+  transition: color 100ms ease-out;
+}
+
+.sidebarOption.active {
+  color: var(--twitter-color);
 }

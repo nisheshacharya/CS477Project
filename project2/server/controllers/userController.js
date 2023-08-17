@@ -17,7 +17,9 @@ exports.tweet = async (req, res, next) => {
 
 exports.search = async (req, res, next) => {
     try {
-        const users = await User.find({ "firstname": req.query.firstname, "lastname": req.query.lastname })
+
+        const users = await User.find({ "userId": { $regex: `^${req.query.username}`, $options: 'i' } });  //regex: when we keep typing, it keeps searching 
+
         res.json(users);
 
     } catch (e) {
@@ -71,7 +73,7 @@ exports.userinfo = async (req, res, next) => {
 }
 
 
-exports.displayTweets = async (req, res, next) => {
+exports.displayTweets = async (req, res, next) => {            //not used
     try {
         const followedUser = await User.findOne({ "userId": userInfo.userId });
         console.log("ollList", followedUser.follows);

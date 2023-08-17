@@ -17,6 +17,18 @@ window.onload = (() => {
 
   const searchResultsContainer = document.querySelector(".searchResults");
 
+
+  let searchField = document.querySelector('.searchField');
+  let resultsSection = document.querySelector('.searchResults');
+
+  searchField.addEventListener('keyup', function (event) {
+    getSearchResults(event.target.value).then(r => {
+    });
+    if (event.target.value === '') {
+      searchResultsContainer.innerHTML = ''
+    }
+  });
+
   async function getSearchResults(searchKeyword) {
     // const response = await fetch(BASE_URL + '/tweet_users?search=' + searchKeyword,
     //   {
@@ -26,7 +38,6 @@ window.onload = (() => {
     //   });
     // const filteredUsers = await response.json();
     // populateSearchResults(filteredUsers);
-
 
     const dummySearchResults = [
       {
@@ -47,38 +58,6 @@ window.onload = (() => {
     // call backend to get search results.
     // return dummySearchResults;
   }
-
-  async function followUser(username) {
-    await manageFollow(username, 'follow');
-  }
-
-  async function unfollowUser(username) {
-    await manageFollow(username, 'unfollow');
-  }
-
-  async function manageFollow(username, action) {
-    // let id = document.querySelector('#id').innerHTML;    neet to get id creating hiddedn field or using cookie or storage
-    // id = '1';
-    // await fetch(BASE_URL + `/follow?username=${username}&id=${id}&follow_action=${action}`,
-    //   {
-    //       headers: {
-    //           'Content-Type': 'application/json'
-    //       }
-    //   });
-  }
-
-  let searchField = document.querySelector('.searchField');
-  let resultsSection = document.querySelector('.searchResults');
-
-  searchField.addEventListener('keyup', function (event) {
-    getSearchResults(event.target.value).then(r => {
-    });
-    if (event.target.value === '') {
-      searchResultsContainer.innerHTML = ''
-    }
-  });
-
-
   function populateSearchResults(filteredResults) {
     searchResultsContainer.innerHTML = '';
     filteredResults.forEach((user) => {
@@ -88,6 +67,8 @@ window.onload = (() => {
       resultElement.classList.add("searchResult");
       resultElement.textContent = username;
 
+
+      // if 
       const followButton = document.createElement("button");
       followButton.textContent = following === true ? "Unfollow" : "Follow";
       followButton.classList.add("followButton");
@@ -109,6 +90,32 @@ window.onload = (() => {
       });
     });
   }
+
+
+
+
+  async function followUser(username) {
+    await manageFollow(username, 'follow');
+  }
+
+  async function unfollowUser(username) {
+    await manageFollow(username, 'unfollow');
+  }
+
+  async function manageFollow(username, action) {
+    // let id = document.querySelector('#id').innerHTML;    neet to get id creating hiddedn field or using cookie or storage
+    // id = '1';
+    // await fetch(BASE_URL + `/follow?username=${username}&id=${id}&follow_action=${action}`,
+    //   {
+    //       headers: {
+    //           'Content-Type': 'application/json'
+    //       }
+    //   });
+  }
+
+
+
+
 
 
   //for the tweets
@@ -148,8 +155,8 @@ window.onload = (() => {
     let tweetSectionTemplate = document.querySelector('.postTemplate');
 
     allTweets.forEach((tweet) => {
-      let tweetSection = tweetSectionTemplate.cloneNode(true);
-      tweetSection.classList.remove('d-none');
+      let tweetSection = tweetSectionTemplate.cloneNode(true);   //coles the template
+      tweetSection.classList.remove('d-none');                   //remove displapay = "none" class
 
       tweetSection.querySelector('.tweet_user_image').src = tweet.userImage;
       tweetSection.querySelector('.tweet_username').innerHTML = tweet.userName;

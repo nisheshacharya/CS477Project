@@ -1,21 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./resources/css/styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./resources/css/style.css">
   <title>User Information</title>
 </head>
+
 <body>
+  <header>
+  </header>
+
+
   <div class="userContent">
-    <div class="leftUser">
-      <a href="tweet.html"><img src="logo.jpg" alt="Logo"></a>
-      <a href="tweet.html"><h1>🏠</h1></a>
-      <input type="text" placeholder="Search">
-      <a href="#"><h1>✉️</h1></a>
-    </div>
+    <div class="sidebar">
+      <!-- twitter logo here  -->
+       <div class="sidebarOption active">
+           <span class="material-icons" onclick="location.href ='home.html';"> house </span>
+           <h2>Home</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> search </span>
+           <h2>Explore</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> notifications_none </span>
+           <h2>Notifications</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> mail_outline </span>
+           <h2>Messages</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> bookmark_border </span>
+           <h2>Bookmarks</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> list_alt </span>
+           <h2>Lists</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons" onclick="location.href = 'user.html';"> perm_identity </span>
+           <h2>Profile</h2>
+       </div>
+
+       <div class="sidebarOption">
+           <span class="material-icons"> more_horiz </span>
+           <h2>More</h2>
+       </div>
+
+   </div>
     <div class="middleUser">
-      <img src="user.jpg" alt="User Image">
+      <img src="./resources/images/user.jpg" alt="User Image">
       <h2>Username</h2>
       <a href="#">Followers</a>
       <a href="#">Following</a>
@@ -33,5 +78,7 @@
   </div>
 
   <script src="./resources/js/user.js"></script>
+  
 </body>
+
 </html>

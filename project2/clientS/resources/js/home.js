@@ -1,22 +1,46 @@
 window.onload = (() => {
-    const BASE_URL = 'http://localhost:3000';
+    const BASE_URL = 'http://localhost:3001';
 
-    
+    const userImage = 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=200'
+
 
     const tweetsContainer = document.querySelector(".feed");
 
     const searchResultsContainer = document.querySelector(".searchResults");
 
+    //post tweet
+    const form = document.getElementById("tweetForm")
+    form.addEventListener("submit", async function (event) {
+
+        event.preventDefault()
+        const token = localStorage.getItem("token")
+        await fetch(BASE_URL + '/tweets', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ tweet: form.elements.tweet.value })
+        })
+
+        location.reload()
+
+
+    })
+
 
     async function getAllTweets() {
-        // const response = await fetch(BASE_URL + '/tweets',
-        //   {
-        //       headers: {
-        //           'Content-Type': 'application/json'
-        //       }
-        //   });
-        // const allTweets = await response.json();
-        // populateTweets(allTweets);
+        const token = localStorage.getItem("token")
+
+        const response = await fetch(BASE_URL + '/tweets',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        const allTweets = await response.json();
+        populateTweets(allTweets.tweets);
 
 
         const dummyTweets = [
@@ -34,7 +58,7 @@ window.onload = (() => {
                 userImage: 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=200'
             }
         ];
-        populateTweets(dummyTweets);
+        // populateTweets(dummyTweets);
 
     }
 
@@ -45,9 +69,11 @@ window.onload = (() => {
             let tweetSection = tweetSectionTemplate.cloneNode(true); // 
             tweetSection.classList.remove('d-none'); //remove display none of cloned one
 
-            tweetSection.querySelector('.tweet_user_image').src = tweet.userImage;
-            tweetSection.querySelector('.tweet_username').innerHTML = tweet.userName;
+            tweetSection.querySelector('.tweet_user_image').src = userImage;
+            tweetSection.querySelector('.tweet_username').innerHTML = tweet.userId.firstname;
             tweetSection.querySelector('.tweet_para').innerHTML = tweet.tweet;
+            tweetSection.querySelector('.tweet_date').innerHTML = new Date(tweet.postedDate).toLocaleString();
+
             tweetsContainer.appendChild(tweetSection);
 
         });
@@ -70,7 +96,7 @@ window.onload = (() => {
     // });
 
 
-    let searchField = document.querySelector('.searchField');   
+    let searchField = document.querySelector('.searchField');
     let resultsSection = document.querySelector('.searchResults');
 
     searchField.addEventListener('keyup', function (event) {
@@ -80,18 +106,20 @@ window.onload = (() => {
             searchResultsContainer.innerHTML = ''
         }
     });
-    
+
 
 
     function populateSearchResults(filteredResults) {
         searchResultsContainer.innerHTML = '';
         filteredResults.forEach((user) => {
-            let username = user.username;
+            let username = user.firstname;
+            let lastname = user.lastname;
+
             let following = user.following;
 
             const resultElement = document.createElement("div");
             resultElement.classList.add("searchResult");
-            resultElement.textContent = username;
+            resultElement.textContent = username + " " + lastname;
 
             const followButton = document.createElement("button");
 
@@ -132,21 +160,36 @@ window.onload = (() => {
         // populateSearchResults(filteredUsers);
 
 
-        const dummySearchResults = [
-            {
-                username: 'User A',
-                following: false
-            },
-            {
-                username: 'User B',
-                following: true
-            },
-            {
-                username: 'User C',
-                following: false
-            }
-        ];
-        populateSearchResults(dummySearchResults);
+        // const dummySearchResults = [
+        //     {
+        //         username: 'User A',
+        //         following: false
+        //     },
+        //     {
+        //         username: 'User B',
+        //         following: true
+        //     },
+        //     {
+        //         username: 'User C',
+        //         following: false
+        //     }
+        // ];
+
+        if (searchKeyword != "") {
+            const token = localStorage.getItem("token")
+
+            const response = await fetch(BASE_URL + '/users/search?username=' + searchKeyword,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            const users = await response.json();
+            console.log("users", users)
+            populateSearchResults(users);
+        }
+
 
         // call backend to get search results.
         // return dummySearchResults;
