@@ -2,8 +2,10 @@ const Tweet = require('../models/tweetModel');
 const express = require('express');
 
 // Controller for getting all tweets of a logged-in user
+
+
 exports.getAllTweets = async (req, res) => {
-    const userId = req.user;
+    
     try {
         const tweets = await Tweet.find().sort({ postedDate: -1 }).populate('userId', 'firstname');
         res.json({ tweets });
@@ -12,8 +14,9 @@ exports.getAllTweets = async (req, res) => {
     }
 };
 
+
 exports.getAllTweetsByUser = async (req, res) => {
-    const userId = req.user;
+    const userId = req.user;    
     try {
         const tweets = await Tweet.find({ userId }).sort({ postedDate: -1 }).populate('userId', 'firstname');
         res.json({ tweets });
@@ -24,9 +27,10 @@ exports.getAllTweetsByUser = async (req, res) => {
 
 
 
-
 exports.postTweet = async (req, res, next) => {
     const { tweet } = req.body;
+   
+
     const userId = req.user;     // authorization code. We set in authController, we get it while loggin in
     console.log("userId", userId)
     const postedDate = new Date();

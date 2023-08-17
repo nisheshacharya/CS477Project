@@ -25,9 +25,7 @@ exports.authorize = (req, res, next) => {
             } else {
                 console.log("user", user)
                 req.user = user.userId;     //Will use it  in tweet controller,.. 
-                //{username: 'john', role: 'user'}
-                // req.userId = user._id
-                // exports.userId = user.userId;  //saving the userId
+              
                 next();
             }
         });
