@@ -15,7 +15,7 @@ loginForm.addEventListener("submit", async function (event) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                // Additional headers if needed
+
             },
             body: JSON.stringify({
                 userId: username.value,
@@ -23,18 +23,22 @@ loginForm.addEventListener("submit", async function (event) {
             })
         })
 
-        console.log("response", response)
+        // console.log("response", response)
+
         if (response.status === 401) {
             // Handle unauthorized error
             error.innerHTML = "Login Failed"
             // You might want to redirect to a login page or take other actions
         } else {
-            const token = await response.json();
+            const token = await response.json();   //json object including token
+
             console.log("token", token)
 
             localStorage.setItem("token", token.token)
+            localStorage.setItem("username", token.username)
 
-            window.location.href = "http://127.0.0.1:3000/project2/clientS/home.html";
+
+            location.href = "home.html";
 
         }
 

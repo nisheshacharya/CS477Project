@@ -8,7 +8,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne(req.body);
     if (user) {
         const token = jwt.sign({ userId: user._id }, privateSecret);
-        res.status(200).json({ token });
+        res.status(200).json({ token, username: user.userId });
     } else {
         res.status(401).json({ error: 'username or password is invalid' });
     }
@@ -25,7 +25,7 @@ exports.authorize = (req, res, next) => {
             } else {
                 console.log("user", user)
                 req.user = user.userId;     //Will use it  in tweet controller,.. 
-              
+
                 next();
             }
         });

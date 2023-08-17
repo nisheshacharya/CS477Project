@@ -17,10 +17,24 @@ exports.tweet = async (req, res, next) => {
 
 exports.search = async (req, res, next) => {
     try {
+        const userId = req.user
+        const loggedInUser = await User.findOne({ _id: userId });
+        const users = await User.find({
+            "_id": {
+                $not: {
+                    $eq: userId
+                },
+            },
+            "userId": {
+                $regex: `^${req.query.username}`,
+                $options: 'i'
+            }
+        });  //regex: when we keep typing, it keeps searching 
 
-        const users = await User.find({ "userId": { $regex: `^${req.query.username}`, $options: 'i' } });  //regex: when we keep typing, it keeps searching 
-
-        res.json(users);
+        const modifiedUsers = users.map(u => ({
+            ...u._doc, isFollowed: loggedInUser.follows.includes(u._id)
+        }))
+        res.json(modifiedUsers);
 
     } catch (e) {
         console.log(e.message);
@@ -29,9 +43,12 @@ exports.search = async (req, res, next) => {
 
 exports.follow = async (req, res, next) => {
     try {
-        const user = await User.findOne({ "userId": userInfo.userId });
-        user.follows.push(req.body.followId);
-        const followUpdate = await User.updateOne({ "userId": userInfo.userId }, { "follows": user.follows });
+        const { followId } = req.body
+        const userId = req.user
+        const user = await User.findOne({ _id: userId });
+
+        user.follows.push(followId);
+        const followUpdate = await User.updateOne({ _id: userId }, { "follows": user.follows });
         res.json(followUpdate);
 
     } catch (e) {
@@ -41,12 +58,15 @@ exports.follow = async (req, res, next) => {
 
 exports.unfollow = async (req, res, next) => {
     try {
-        const user = await User.findOne({ "userId": userInfo.userId });
-        const index = user.follows.indexOf(req.body.unFollowId);
+        const { unFollowId } = req.body
+        const userId = req.user
+        const user = await User.findOne({ _id: userId });
+
+        const index = user.follows.indexOf(unFollowId);
         if (index > -1) {
             user.follows.splice(index, 1);
         }
-        const followUpdate = await User.updateOne({ "userId": userInfo.userId }, { "follows": user.follows });
+        const followUpdate = await User.updateOne({ "_id": userId }, { "follows": user.follows });
         res.json(followUpdate);
     } catch (e) {
         console.log(e.message);
@@ -55,22 +75,15 @@ exports.unfollow = async (req, res, next) => {
 
 exports.userinfo = async (req, res, next) => {
     try {
-        const user = await User.findOne({ "userId": userInfo.userId }).populate('follows');
+        const userId = req.user
+        const user = await User.findOne({ "_id": userId }).populate('follows');
         res.json(user);
     } catch (e) {
         console.log(e.message);
     }
 }
 
-exports.userinfo = async (req, res, next) => {
-    try {
-        const user = await User.findOne({ "userId": userInfo.userId }).populate('follows');
-        console.log("userr", user);
-        res.json(user);
-    } catch (e) {
-        console.log(e.message);
-    }
-}
+
 
 
 exports.displayTweets = async (req, res, next) => {            //not used

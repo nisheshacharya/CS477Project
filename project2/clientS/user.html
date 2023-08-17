@@ -39,15 +39,17 @@
             <span class="material-icons" onclick="location.href = 'user.html';"> perm_identity </span>
             <h2>Profile</h2>
         </div>
-
-
+        <a class="sidebarOption" id="logoutButton">
+            <span class="material-icons">logout</span>
+            <h2>Sign out</h2>
+        </a>
 
     </div>
 
     <!-- Need to populate usernames in all fields with class = "username" with for loop -->
     <div class="user_middle_container">
         <div class="userNameDiv">
-            <h2 class="userName"> UserName Here</h2>
+            <h2 class="userName"> </h2>
         </div>
         <div class="profilePic_CoverPic_Bio_Container">
             <div class=coverPicContainer>
@@ -58,16 +60,29 @@
                     src="https://static.vecteezy.com/system/resources/previews/001/840/618/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg" />
             </div>
             <div class="userNameDiv2">
-                <h2 class="userName"> User Name Here</h2>
+                <h2 id="userName"> User Name Here</h2>
                 <P class="userBio"> This section is user bio </P>
                 <a href="#" style="color: black;">Followers</a>
-                <a href="#" style="color: black;">Following</a>
+                <a href="#" style="color: black;" id="followingbtn">Following</a>
+
 
             </div>
 
+
+
+
         </div>
 
+
         <div class="feed">
+
+            <div>
+
+                <div id="following">
+                    Following list will be displayed here
+                </div>
+
+            </div>
             <div class="post postTemplate d-none">
                 <div class="profile_pic_on_tweet">
                     <img src="./images/user.jpg" alt="" class="tweet_user_image" />

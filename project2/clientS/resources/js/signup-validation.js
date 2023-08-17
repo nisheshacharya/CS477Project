@@ -34,7 +34,7 @@ window.onload = function () {
                 })
 
                 console.log("response", response)
-                window.location.href = "http://127.0.0.1:3000/project2/clientS/login.html";
+                location.href = "login.html";
             }
             catch (error) {
                 console.log("Error during login", error)
@@ -51,4 +51,45 @@ window.onload = function () {
         return password.length >= 8;
 
     }
+
+    signupForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        // const username = usernameInput.value;
+        // const password = passwordInput.value;
+        // const firstname = firstnameInput.value;
+        // const lastname = lastnameInput.value;
+
+        if (!isUsernameValid(username) || !isPasswordValid(password)) {
+            userPasswordError.textContent = "Invalid Username or Password";
+        } else {
+            try {
+                const response = await fetch(`${BASE_URL}/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Additional headers if needed
+                    },
+                    body: JSON.stringify({
+                        userId: username,
+                        password,
+                        firstname,
+                        lastname,
+                    }),
+                });
+
+                if (response.status === 404) {
+                    console.log('response status', res.status)
+                    const result = await response.json();
+                    document.getElementById('uniqueUname').innerText = result.error;
+                } else {
+                    location.href = 'login.html';
+                }
+            } catch (error) {
+                console.log("Error during signup", error);
+            }
+        }
+    });
+
+
 };
