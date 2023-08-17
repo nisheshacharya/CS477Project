@@ -4,7 +4,7 @@ const router = express.Router();
 const tweetController = require('../controllers/tweetController');
 
 // Get all tweets
-router.get('/user', tweetController.getAllTweetsByUser);
+router.get('/auth-user', tweetController.getAllTweetsByUser);
 router.get('/', tweetController.getAllTweets);
 
 
